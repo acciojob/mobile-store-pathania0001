@@ -40,7 +40,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "dist"),
     },
-    port: 8081, // 👈 keep same port you’re using
+    port: 8000, // 👈 keep same port you’re using
     historyApiFallback: true, // 👈 fixes Cannot GET /admin
     hot: true,
     open: true,
