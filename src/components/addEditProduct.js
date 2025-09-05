@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useProducts } from "./context";
-import { useNavigate, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const AddEditProduct = ({ type }) => {
   const [product, setProduct] = useState({
@@ -11,7 +11,7 @@ const AddEditProduct = ({ type }) => {
   });
 
   const { id } = useParams();
-  const navigate = useNavigate();
+  const history = useHistory(); // ✅ useHistory instead of useNavigate
   const { products, addProduct, updateProduct, deleteProduct } = useProducts();
 
   // Pre-fill form when editing
@@ -44,14 +44,14 @@ const AddEditProduct = ({ type }) => {
     }
 
     setProduct({ title: "", description: "", image: "", price: "" });
-    navigate("/admin");
+    history.push("/admin"); // ✅ navigate replaced with history.push
   };
 
   // Delete product
   const handleDelete = () => {
     if (id) {
       deleteProduct(Number(id));
-      navigate("/admin");
+      history.push("/admin"); // ✅ navigate replaced with history.push
     }
   };
 
