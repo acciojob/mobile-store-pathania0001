@@ -19,6 +19,7 @@ const ProductList = () => {
           <Link
             to={`/products/${product.id}`}
             key={product.id}
+            className="btn"
             style={{
               border: "1px solid #ccc",
               borderRadius: "8px",
