@@ -20,6 +20,7 @@ const ProductList = () => {
             to={`/products/${product.id}`}
             key={product.id}
             className="btn"
+            data-testid={`product-${product.id}`}  // ✅ Cypress selector
             style={{
               border: "1px solid #ccc",
               borderRadius: "8px",

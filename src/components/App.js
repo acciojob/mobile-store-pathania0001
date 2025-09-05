@@ -7,7 +7,6 @@ import AddEditProduct from "./addEditProduct";
 import "../styles/App.css";
 import Layout from "./layout";
 
-
 const App = () => {
   return (
     <Router>

@@ -11,10 +11,9 @@ const AddEditProduct = ({ type }) => {
   });
 
   const { id } = useParams();
-  const history = useHistory(); // ✅ useHistory instead of useNavigate
+  const history = useHistory();
   const { products, addProduct, updateProduct, deleteProduct } = useProducts();
 
-  // Pre-fill form when editing
   useEffect(() => {
     if (type === "edit" && id) {
       const existing = products.find((p) => p.id === Number(id));
@@ -24,13 +23,11 @@ const AddEditProduct = ({ type }) => {
     }
   }, [id, type, products]);
 
-  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   };
 
-  // Add or update product
   const handleClick = () => {
     if (!product.title || !product.price || !product.description || !product.image) {
       alert("Please fill all fields");
@@ -44,14 +41,13 @@ const AddEditProduct = ({ type }) => {
     }
 
     setProduct({ title: "", description: "", image: "", price: "" });
-    history.push("/admin"); // ✅ navigate replaced with history.push
+    history.push("/admin");
   };
 
-  // Delete product
   const handleDelete = () => {
     if (id) {
       deleteProduct(Number(id));
-      history.push("/admin"); // ✅ navigate replaced with history.push
+      history.push("/admin");
     }
   };
 
@@ -98,6 +94,7 @@ const AddEditProduct = ({ type }) => {
         <button
           onClick={handleClick}
           style={{ padding: "8px 12px", background: "green", color: "white", border: "none" }}
+          data-testid="save-product"
         >
           {type === "add" ? "Add Product" : "Update Product"}
         </button>
@@ -105,6 +102,7 @@ const AddEditProduct = ({ type }) => {
           <button
             onClick={handleDelete}
             style={{ padding: "8px 12px", background: "red", color: "white", border: "none" }}
+            data-testid="delete-product"
           >
             Delete Product
           </button>
